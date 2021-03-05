@@ -1,0 +1,30 @@
+@font-face {
+	font-family: Akaya;
+	src: url(./assets/Fonts/AkayaTelivigala-Regular.ttf);
+}
+@font-face {
+	font-family: DancingScript;
+	src: url(./assets/Fonts/DancingScript-VariableFont_wght.ttf);
+}
+@font-face {
+	font-family: YanoneKaffee;
+	src: url(./assets/Fonts/YanoneKaffeesatz-VariableFont_wght.ttf);
+}
+body,
+html {
+	margin: 0;
+	font-family: "YanoneKaffee";
+	height: 100%;
+	min-height: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background: #daf7a6;
+	color: #5e5958;
+}
+
+code {
+	font-family: "Raleway", sans-serif;
+}
+#root {
+	height: 100%;
+}

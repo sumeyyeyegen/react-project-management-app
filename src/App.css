@@ -1,0 +1,29 @@
+.App {
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+.form {
+	display: grid;
+	grid-template-columns: 300px;
+}
+
+label {
+	font-size: 20px;
+	font-weight: 300;
+}
+.grid {
+	display: grid;
+	grid-template-columns: minmax(10px, 310px) minmax(10px, 1fr);
+}
+
+.grid .userInfo {
+	display: flex;
+	align-items: center;
+	justify-self: start;
+	font-size: 28px;
+	color: #b7410e;
+	text-transform: uppercase;
+}
