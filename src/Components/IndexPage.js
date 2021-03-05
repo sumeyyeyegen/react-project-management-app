@@ -1,10 +1,25 @@
 import React, { useContext } from 'react'
 import '../App.css';
 import { Link, withRouter, useHistory } from 'react-router-dom';
-import ProjectManagementContext from '../contexts/ProjectManagementContext';
+import ProjectManagementContext from '../Contexts/ProjectManagementContext';
 
 export default function IndexPage() {
     const { name, surname, setSurname, setName } = useContext(ProjectManagementContext);
+    const onChangeName = event => {
+        localStorage.setItem('name', event.target.value);
+        setName(event.target.value);
+    };
+    const onChangeSurname = event => {
+        localStorage.setItem('surname', event.target.value);
+        setSurname(event.target.value);
+    }
+    const history = useHistory();
+    const listener = (event) => {
+        if (event.code === "Enter" || event.code === "NumpadEnter") {
+            history.push("/project/create");
+            console.log("Enter key was pressed. Run your function.");
+        }
+    };
     return (
         <div className="App container">
             <div className="form">
