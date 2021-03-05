@@ -9,7 +9,9 @@ import { BrowserRouter } from 'react-router-dom';
 ReactDOM.render(
   <ProjectManagementProvider>
     <BrowserRouter>
-      <App />
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
     </BrowserRouter>
   </ProjectManagementProvider>,
   document.getElementById('root')
