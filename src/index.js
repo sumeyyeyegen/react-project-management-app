@@ -3,11 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ProjectManagementProvider } from './Contexts/ProjectManagementContext';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <ProjectManagementProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </ProjectManagementProvider>,
   document.getElementById('root')
 );
 
