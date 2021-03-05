@@ -1,3 +1,16 @@
 .App {
 	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+.form {
+	display: grid;
+	grid-template-columns: 300px;
+}
+
+label {
+	font-size: 20px;
+	font-weight: 300;
 }
