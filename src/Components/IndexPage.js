@@ -3,7 +3,7 @@ import '../App.css';
 import { Link, withRouter, useHistory } from 'react-router-dom';
 import ProjectManagementContext from '../Contexts/ProjectManagementContext';
 
-export default function IndexPage() {
+function IndexPage() {
     const { name, surname, setSurname, setName } = useContext(ProjectManagementContext);
     const onChangeName = event => {
         localStorage.setItem('name', event.target.value);
@@ -16,8 +16,8 @@ export default function IndexPage() {
     const history = useHistory();
     const listener = (event) => {
         if (event.code === "Enter" || event.code === "NumpadEnter") {
+            console.log("Enter key was pressed.");
             history.push("/project/create");
-            console.log("Enter key was pressed. Run your function.");
         }
     };
     return (
@@ -31,8 +31,9 @@ export default function IndexPage() {
                     <label htmlFor="surname" className="mr-1">Soyad</label>
                     <input value={surname} type="text" id="surname" className="form-control" onChange={onChangeSurname} onKeyPress={e => listener(e)} />
                 </div>
-                <h3 className="mt-3">{name}{surname}</h3>
+                <h3 className="mt-3">{name}   {surname}</h3>
             </div>
         </div>
     )
 }
+export default withRouter(IndexPage);
