@@ -17,7 +17,7 @@ function IndexPage() {
     const listener = (event) => {
         if (event.code === "Enter" || event.code === "NumpadEnter") {
             console.log("Enter key was pressed.");
-            history.push("/project/create");
+            history.push("/project/add");
         }
     };
     return (
