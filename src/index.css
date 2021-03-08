@@ -18,8 +18,9 @@ html {
 	min-height: 100%;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background: #daf7a6;
-	color: #5e5958;
+	background: #b9ffb7;
+	color: #403233;
+	font-size: 20px;
 }
 
 code {

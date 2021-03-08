@@ -14,11 +14,13 @@ label {
 	font-size: 20px;
 	font-weight: 300;
 }
-
+.test {
+	background-color: white;
+}
 .userInfo {
 	text-align: center;
 	font-size: 28px;
-	color: #b7410e;
+	color: #403233;
 	text-transform: uppercase;
 }
 .userInfo img {
@@ -30,6 +32,9 @@ label {
 .profile-card {
 	display: flex;
 	height: 300px;
+}
+.card {
+	border-radius: 15px;
 }
 .card .card-body form {
 	display: flex;

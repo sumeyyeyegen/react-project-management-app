@@ -46,7 +46,7 @@ const CreateProjectPage = () => {
                                             placeholder="Name"
                                             value={projectName}
                                             onChange={e => setProjectName(e.target.value)} />
-                                        <button className="btn btn-block" style={{ background: '#b7410e', color: 'white' }} type="submit">Create</button>
+                                        <button className="btn btn-block" style={{ background: '#020245', color: 'white' }} type="submit">Create</button>
                                     </form>
                                 </div>
                             </div>
