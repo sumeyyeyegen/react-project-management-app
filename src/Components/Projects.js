@@ -2,18 +2,13 @@ import React, { useContext, useState } from 'react';
 import img1 from '../assets/Images/women.png';
 import ProjectManagementContext from '../Contexts/ProjectManagementContext';
 import Project from './Project';
+import CreateProject from './CreateProject';
 
-const CreateProjectPage = () => {
-    const { projects, addProject, tasks, setTasks } = useContext(ProjectManagementContext);
-    const [projectName, setProjectName] = useState("");
+const Projects = () => {
+    const { projects } = useContext(ProjectManagementContext);
     const userName = localStorage.getItem('name');
     const userSurname = localStorage.getItem('surname');
 
-    const handleNewProjectForm = (e) => {
-        e.preventDefault();
-        addProject(projectName);
-        setProjectName('');
-    }
     return (
         <div className="container mt-4">
             <div className="row d-md-flex justify-content-center">
@@ -31,23 +26,20 @@ const CreateProjectPage = () => {
                     <div className="row">
                         {projects.length ? (
                             projects.map(project => {
-                                return <Project project={project} key={project.id} />
+                                return <Project key={project.id} project={project} />
                             })
                         ) : (
-                            <div>Hiç proje yok.</div>
+                            <div className="card">
+                                <div className="card-body">
+                                    Hiç proje yok.
+                                </div>
+                            </div>
                         )
                         }
                         <div className="col-md-4 col-6">
                             <div className="card">
                                 <div className="card-body">
-                                    <form action="" onSubmit={e => handleNewProjectForm(e)}>
-                                        <input type="text"
-                                            className="form-control"
-                                            placeholder="Name"
-                                            value={projectName}
-                                            onChange={e => setProjectName(e.target.value)} />
-                                        <button className="btn btn-block" style={{ background: '#b7410e', color: 'white' }} type="submit">Create</button>
-                                    </form>
+                                    <CreateProject />
                                 </div>
                             </div>
                         </div>
@@ -58,4 +50,4 @@ const CreateProjectPage = () => {
     );
 };
 
-export default CreateProjectPage;
+export default Projects;
