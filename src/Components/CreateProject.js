@@ -2,11 +2,12 @@ import React, { useContext, useState } from 'react'
 import ProjectManagementContext from '../Contexts/ProjectManagementContext';
 
 function CreateProject() {
-    const { addProject, createSelectItems, categories } = useContext(ProjectManagementContext);
+    const { addProject, categories } = useContext(ProjectManagementContext);
     const [projectName, setProjectName] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState("");
     const handleNewProjectForm = (e) => {
         e.preventDefault();
+        console.log(selectedCategory);
         addProject(projectName, selectedCategory);
         setProjectName('');
     }
@@ -21,10 +22,10 @@ function CreateProject() {
                 value={projectName}
                 onChange={e => setProjectName(e.target.value)} />
 
-            <select className="custom-select form-group" onChange={e => handleChange(e)}>
+            <select className="custom-select form-group" value={selectedCategory} onChange={e => handleChange(e)}>
                 {
                     categories.length && categories.map(category => {
-                        return <option key={category.id} id={category.id} onChange={e => console.log(e.target.value)}>{category.name}</option>
+                        return <option key={category.id} value={category.name} id={category.id}>{category.name}</option>
                     })
                 }
             </select>
