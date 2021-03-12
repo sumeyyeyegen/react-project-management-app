@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import ProjectManagementContext from '../Contexts/ProjectManagementContext';
 
-function Task({ task }) {
-    const { updateTask } = useContext(ProjectManagementContext);
+function Task({ task, projectId }) {
+    const { updateTask, deleteTask } = useContext(ProjectManagementContext);
     return (
         <li>
             <div className="view">
@@ -25,7 +25,7 @@ function Task({ task }) {
                         )
                 }
                 <label> {task.title}</label >
-                <button className="destroy"></button>
+                <button className="destroy" onClick={() => deleteTask(task.id, projectId)}></button>
             </div>
         </li>
     )

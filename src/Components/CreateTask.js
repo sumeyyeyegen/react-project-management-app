@@ -8,6 +8,7 @@ function CreateTask({ project }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         addTask(task, project.id)
+        setTask("");
     }
 
     return (

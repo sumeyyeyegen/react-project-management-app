@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import Task from './Task';
 import ProjectManagementContext from '../Contexts/ProjectManagementContext';
 
-function Tasks({ tasks }) {
+function Tasks({ tasks, projectId }) {
     return (
         <ul className="todo-list">
             {
-                tasks.map(task => <Task key={task.id} task={task} />)
+                tasks.map(task => <Task key={task.id} task={task} projectId={projectId} />)
             }
         </ul>
     )
