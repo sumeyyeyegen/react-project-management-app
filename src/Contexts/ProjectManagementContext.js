@@ -3,10 +3,17 @@ import { v1 as uuid } from 'uuid';
 const ProjectManagementContext = createContext({});
 
 export const ProjectManagementProvider = ({ children }) => {
+    const initialCategories = [
+        { name: "Category 1", id: uuid(), projects: [] },
+        { name: "Category 2", id: uuid(), projects: [] },
+        { name: "Category 3", id: uuid(), projects: [] },
+        { name: "Category 4", id: uuid(), projects: [] },
+        { name: "Category 5", id: uuid(), projects: [] },
+        { name: "Category 6", id: uuid(), projects: [] },
+    ]
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
-    const [editItem, setEditItem] = useState(null);
-
+    const [categories, setCategories] = useState(initialCategories);
     const initialProject = JSON.parse(localStorage.getItem('projects')) || []
 
     const [projects, setProjects] = useState(initialProject);
@@ -15,8 +22,11 @@ export const ProjectManagementProvider = ({ children }) => {
         localStorage.setItem('projects', JSON.stringify(projects));
     }, [projects]);
 
-    const addProject = name => {
-        setProjects([...projects, { name, id: uuid(), tasks: [] }]);
+    const addProject = (name, categoryName) => {
+        setProjects([...projects, { name, id: uuid(), tasks: [], category: { categoryName, id: uuid() } }]);
+    }
+    const addCategory = (categoryName) => {
+        setCategories([...categories, { name: categoryName, id: uuid() }])
     }
     const deleteProject = id => {
         const updatedProjects = projects.filter(project => project.id !== id);
@@ -25,9 +35,12 @@ export const ProjectManagementProvider = ({ children }) => {
     const addTask = (title, id) => {
         const getIndex = projects.findIndex(project => project.id === id);
         const updatedProjects = [...projects];
-        updatedProjects[getIndex].tasks.push({ title: title, id: uuid(), checked: true })
+        updatedProjects[getIndex].tasks.push({ title: title, id: uuid(), checked: false })
         setProjects(updatedProjects);
     }
+    // const addCategory = (categoryName) => {
+    //     setCategories([{ name: categoryName, id: uuid(), projects: [] }])
+    // }
     const deleteTask = (id, projectId) => {
         const currentProject = projects.filter(project => project.id === projectId);
         const Projects = projects.filter(project => project.id !== projectId);
@@ -46,6 +59,13 @@ export const ProjectManagementProvider = ({ children }) => {
         Tasks[indis][value].checked = checked;
         setProjects(updatedProjects);
     }
+    const createSelectItems = () => {
+        let items = [];
+        initialCategories.map(category => items.push(<option key={category.id} value={category.name}>{category.name}</option>))
+
+        return items;
+    }
+
     const values = {
         name,
         setName,
@@ -57,7 +77,11 @@ export const ProjectManagementProvider = ({ children }) => {
         addTask,
         updateTask,
         deleteTask,
-        deleteProject
+        deleteProject,
+        createSelectItems,
+        categories,
+        setCategories,
+        addCategory
     };
 
     return <ProjectManagementContext.Provider value={values}>{children}</ProjectManagementContext.Provider>;

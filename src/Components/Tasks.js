@@ -4,7 +4,7 @@ import ProjectManagementContext from '../Contexts/ProjectManagementContext';
 
 function Tasks({ tasks, projectId }) {
     return (
-        <ul className="todo-list">
+        <ul className="list">
             {
                 tasks.map(task => <Task key={task.id} task={task} projectId={projectId} />)
             }
