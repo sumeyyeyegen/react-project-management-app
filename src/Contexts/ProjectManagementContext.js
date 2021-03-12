@@ -18,42 +18,34 @@ export const ProjectManagementProvider = ({ children }) => {
     const addProject = name => {
         setProjects([...projects, { name, id: uuid(), tasks: [] }]);
     }
-    // const clearList = () => {
-    //     setTasks([])
-    // }
-    // const updateProject = id => {
-    //     const getIndex = projects.findIndex(project => project.id === id);
-    //     const updatedProjects = [...projects];
-    //     updatedProjects[getIndex].tasks = ;
-    //     setProjects(updatedProjects);
-    //     console.log(projects);
-
-    // }
+    const deleteProject = id => {
+        const updatedProjects = projects.filter(project => project.id !== id);
+        setProjects(updatedProjects);
+    }
     const addTask = (title, id) => {
         const getIndex = projects.findIndex(project => project.id === id);
         const updatedProjects = [...projects];
         updatedProjects[getIndex].tasks.push({ title: title, id: uuid(), checked: true })
         setProjects(updatedProjects);
     }
-    const updateTask = (id, checked) => {
-        const getIndex = projects.map(project => project.tasks.findIndex(task => task.id === id))
-        const Tasks = projects.map(project => project.tasks);
-        console.log(Tasks);
-        console.log(projects);
-        Tasks[getIndex].checked = checked;
-        setProjects([...projects, {
-            tasks: Tasks
-        }]);
-        console.log(projects);
+    const deleteTask = (id, projectId) => {
+        const currentProject = projects.filter(project => project.id === projectId);
+        const Projects = projects.filter(project => project.id !== projectId);
+        const currentTask = currentProject[0].tasks.filter(task => task.id !== id);
+        currentProject[0].tasks = currentTask;
+        const newProjects = currentProject.concat(Projects);
+        setProjects(newProjects);
     }
-    // const editTask = (title, id) => {
-    //     const newTasks = tasks.map(task => (task.id === id ? { title, id } : task))
-
-    //     console.log(newTasks)
-
-    //     setTasks(newTasks)
-    //     setEditItem(null)
-    // }
+    const updateTask = (id, checked) => {
+        const getIndex = projects.map(project => project.tasks.findIndex(task => task.id === id));
+        let Tasks = projects.map(project => project.tasks);
+        const index = getIndex.filter((data) => data !== -1);
+        const indis = getIndex.indexOf(index[0]);
+        const value = index[0];
+        let updatedProjects = [...projects];
+        Tasks[indis][value].checked = checked;
+        setProjects(updatedProjects);
+    }
     const values = {
         name,
         setName,
@@ -64,10 +56,8 @@ export const ProjectManagementProvider = ({ children }) => {
         addProject,
         addTask,
         updateTask,
-        editItem,
-        setEditItem,
-        // editTask,
-        // clearList,
+        deleteTask,
+        deleteProject
     };
 
     return <ProjectManagementContext.Provider value={values}>{children}</ProjectManagementContext.Provider>;
