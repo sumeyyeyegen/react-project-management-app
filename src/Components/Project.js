@@ -11,7 +11,6 @@ function Project({ project }) {
             <div className="card project-card">
                 <div className="card-body">
                     <span>{project.name}</span>
-                    <span>{project.category.categoryName}</span>
                     <div className="text-right">
                         <Tasks tasks={project.tasks} projectId={project.id} />
                         <CreateTask project={project} />
