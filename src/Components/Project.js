@@ -10,15 +10,11 @@ function Project({ project }) {
         <div className="col-md-4 col-6 mb-4">
             <div className="card project-card">
                 <div className="card-body">
-                    <span>{project.name} </span>
-                    <span>{project.id}</span>
-
+                    <span>{project.name}</span>
+                    <span>{project.category.categoryName}</span>
                     <div className="text-right">
                         <Tasks tasks={project.tasks} projectId={project.id} />
                         <CreateTask project={project} />
-                        <button className="btn btn-sm mr-2" style={{ background: '#A7E8C5', color: 'white' }}>
-                            Edit
-                        </button>
                         <button className="btn btn-sm" onClick={() => deleteProject(project.id)} style={{ background: '#FF0000', color: 'white' }}>
                             Remove
                         </button>

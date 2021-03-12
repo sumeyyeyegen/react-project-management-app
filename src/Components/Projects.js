@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import img1 from '../assets/Images/women.png';
 import ProjectManagementContext from '../Contexts/ProjectManagementContext';
 import Project from './Project';
+import Categories from './Categories';
 import CreateProject from './CreateProject';
 
 const Projects = () => {
@@ -21,6 +22,7 @@ const Projects = () => {
                             </div>
                         </div>
                     </div>
+                    <Categories />
                 </div>
                 <div className="col-md-9 col-12">
                     <div className="row">
