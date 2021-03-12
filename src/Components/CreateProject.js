@@ -10,6 +10,9 @@ function CreateProject() {
         addProject(projectName, selectedCategory);
         setProjectName('');
     }
+    const handleChange = (e) => {
+        setSelectedCategory(e.target.value);
+    }
     return (
         <form action="" onSubmit={e => handleNewProjectForm(e)}>
             <input type="text"
@@ -18,10 +21,10 @@ function CreateProject() {
                 value={projectName}
                 onChange={e => setProjectName(e.target.value)} />
 
-            <select className="custom-select form-group">
+            <select className="custom-select form-group" onChange={e => handleChange(e)}>
                 {
                     categories.length && categories.map(category => {
-                        return <option key={category.id} >{category.name}</option>
+                        return <option key={category.id} id={category.id} onChange={e => console.log(e.target.value)}>{category.name}</option>
                     })
                 }
             </select>

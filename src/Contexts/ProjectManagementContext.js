@@ -23,7 +23,10 @@ export const ProjectManagementProvider = ({ children }) => {
     }, [projects]);
 
     const addProject = (name, categoryName) => {
-        setProjects([...projects, { name, id: uuid(), tasks: [], category: { categoryName, id: uuid() } }]);
+        const Category = categories.filter(category => category.name === categoryName);
+        console.log(Category);
+        //category.name === categoryName ? console.log(true) : console.log(false)
+        setProjects([...projects, { name, id: uuid(), tasks: [], category: { categoryName } }]);
     }
     const addCategory = (categoryName) => {
         setCategories([...categories, { name: categoryName, id: uuid() }])
@@ -59,12 +62,6 @@ export const ProjectManagementProvider = ({ children }) => {
         Tasks[indis][value].checked = checked;
         setProjects(updatedProjects);
     }
-    const createSelectItems = () => {
-        let items = [];
-        initialCategories.map(category => items.push(<option key={category.id} value={category.name}>{category.name}</option>))
-
-        return items;
-    }
 
     const values = {
         name,
@@ -78,7 +75,6 @@ export const ProjectManagementProvider = ({ children }) => {
         updateTask,
         deleteTask,
         deleteProject,
-        createSelectItems,
         categories,
         setCategories,
         addCategory
