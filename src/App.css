@@ -146,7 +146,8 @@ label {
 	line-height: 1.2;
 	transition: color 0.4s;
 }
-.list li label.lineThrough {
+
+.list li .toggle:checked label.lineThrough {
 	color: #d9d9d9;
 	text-decoration: line-through;
 }
