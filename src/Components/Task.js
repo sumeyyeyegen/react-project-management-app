@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import ProjectManagementContext from '../Contexts/ProjectManagementContext';
+import styles from '../assets/css/task.module.css'
 
 function Task({ task, projectId }) {
     const { updateTask, deleteTask } = useContext(ProjectManagementContext);
@@ -24,7 +25,7 @@ function Task({ task, projectId }) {
                             />
                         )
                 }
-                <label> {task.title}</label >
+                <label className={`${task.checked && styles.lineThrough}`}> {task.title}</label >
                 <button className="destroy" onClick={() => deleteTask(task.id, projectId)}></button>
             </div>
         </li>
