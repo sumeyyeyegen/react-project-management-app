@@ -22,18 +22,9 @@ export const ProjectManagementProvider = ({ children }) => {
         localStorage.setItem('projects', JSON.stringify(projects));
     }, [projects]);
 
-    // const addProjecttoCategory = (projectID) => {
-    //     setCategories()
-    // }
-    const filter = () => {
-        const category = initialCategories.map(category => category)
-        console.log(category);
-    }
     const addProject = (name, categoryName) => {
         setProjects([...projects, { name, id: uuid(), tasks: [], category: { categoryName, id: uuid() } }]);
-        console.log(projects);
     }
-
     const addCategory = (categoryName) => {
         setCategories([...categories, { name: categoryName, id: uuid() }])
     }
@@ -90,8 +81,7 @@ export const ProjectManagementProvider = ({ children }) => {
         createSelectItems,
         categories,
         setCategories,
-        addCategory,
-        filter
+        addCategory
     };
 
     return <ProjectManagementContext.Provider value={values}>{children}</ProjectManagementContext.Provider>;
